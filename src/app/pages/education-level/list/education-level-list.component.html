@@ -1,0 +1,56 @@
+<div class="page-heading">
+  <div class="page-content fade-in-up">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="ibox">
+          <div class="ibox-head">
+            <div class="ibox-title">Grau de instrução</div>
+          </div>
+          <div class="ibox-body">
+            <form [formGroup]="formSearch">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Informe um grau de instrução" aria-label=""
+                      aria-describedby="basic-addon1" id="valueSearch" formControlName="valueSearch">
+                    <div class="input-group-prepend">
+                      <button class="btn btn-primary" type="button" (click)="onSearch()">
+                        <i class="fa fa-search fa-lg" aria-hidden="true"></i> Pesquisar</button>
+                      <button class="btn btn-primary" type="button" [routerLink]="['form']">
+                        <i class="fa fa-plus fa-lg" aria-hidden="true"></i> Novo</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <div class="table-responsive">
+              <table class="table table-sm table-hover table-bordered">
+                <caption>{{ totalRecords}} registro(s) encontrado(s).</caption>
+                <thead class="btn-default">
+                  <tr>
+                    <th scope="col" style="width:10px;">Código</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col" style="width:10px;"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let educationLevel of educationLevels">
+                    <!-- Dados -->
+                    <td style="width:20px;" scope="row">{{ educationLevel.id }}</td>
+                    <td>{{ educationLevel.description }}</td>
+                    <!-- Botões -->
+                    <td>
+                      <button type="button" class="btn btn-success btn-sm" (click)="update(educationLevel)">
+                        <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

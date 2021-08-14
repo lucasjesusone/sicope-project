@@ -1,0 +1,30 @@
+<div class="vertical-center">
+  <div class="content">
+    <form id="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class=" text-center">
+        <img src="../../../assets/img/sicope-90x90.png" class="img-fluid" alt="Acesso restrito" />
+      </div>
+      <h4 class="login-title">Acesso restrito</h4>
+      <div class="form-group">
+        <div class="input-group-icon right">
+          <div class="input-icon"><i class="fa fa-user"></i></div>
+          <input type="text" formControlName="login" class="form-control" placeholder="Usuário" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group-icon right">
+          <div class="input-icon"><i class="fa fa-lock font-16"></i></div>
+          <input type="password" formControlName="password" class="form-control" placeholder="Senha" />
+        </div>
+      </div>
+      <div class="form-group text-center">
+        <button [disabled]="form.invalid" class="btn btn-danger">
+          Acessar
+        </button>
+      </div>
+      <div class="form-group text-center">
+        <div *ngIf="errorMessage" class="alert alert-danger mt-3 mb-0">{{errorMessage}}</div>
+      </div>
+    </form>
+  </div>
+</div>

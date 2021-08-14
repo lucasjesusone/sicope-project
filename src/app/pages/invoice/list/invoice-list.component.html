@@ -1,0 +1,71 @@
+<div class="page-heading">
+  <div class="page-content fade-in-up">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="ibox">
+          <div class="ibox-head">
+            <div class="ibox-title">Notas fiscais</div>
+          </div>
+          <div class="ibox-body">
+            <form [formGroup]="formSearch">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control"
+                      placeholder="Informe um resumo da descrição de um serviço..." aria-label=""
+                      aria-describedby="basic-addon1" id="valueSearch" formControlName="valueSearch">
+                    <div class="input-group-prepend">
+                      <button class="btn btn-primary" type="button" (click)="onSearch()">
+                        <i class="fa fa-search fa-lg" aria-hidden="true"></i> Pesquisar</button>
+                      <button class="btn btn-primary" type="button" [routerLink]="['form']">
+                        <i class="fa fa-plus fa-lg" aria-hidden="true"></i> Novo</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <div class="table-responsive">
+              <table class="table table-sm table-hover table-bordered">
+                <caption>{{ totalRecords}} registro(s) encontrado(s).</caption>
+                <thead class="btn-default">
+                  <tr>
+                    <th scope="col" style="width:10px;">Código</th>
+                    <th scope="col" style="width:10px;">Número</th>
+                    <th scope="col">Data Emissão</th>
+                    <th scope="col">Tomador</th>
+                    <th scope="col">Serviço</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col" style="width:10px;"></th>
+                    <th scope="col" style="width:10px;"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let invoice of invoices">
+                    <!-- Dados -->
+                    <td style="width:20px;" scope="row">{{ invoice.id }}</td>
+                    <td style="width:20px;" scope="row">{{ invoice.invoice_number }}</td>
+                    <td scope="row">{{ invoice.date_emission | date: 'dd/MM/yyyy' }}</td>
+                    <td scope="row">{{ invoice.taker_name }}</td>
+                    <td>{{ invoice.discrimination }}</td>
+                    <td>{{ invoice.value_services | currency: "BRL" }}</td>
+                    <!-- Botões -->
+                    <td>
+                      <button type="button" class="btn btn-success btn-sm" (click)="update(invoice)">
+                        <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
+                      </button>
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-danger btn-sm" (click)="transmit(invoice)">
+                        <i class="fa fa-wifi fa-lg" aria-hidden="true"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

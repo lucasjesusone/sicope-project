@@ -1,0 +1,80 @@
+<div class="content">
+  <form [formGroup]="formMain">
+    <div class="row no-margin">
+      <div class="form-group col-md-6">
+        <label for="neighborhood">Descrição :</label>
+        <input
+          type="text"
+          id="description"
+          maxlength="100"
+          formControlName="description"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="value">Valor (R$):</label>
+        <input
+          type="text"
+          id="value"
+          currencyMask
+          formControlName="value"
+          class="form-control"
+        />
+      </div>
+    </div>
+    <div class="row no-margin">
+      <div class="form-group col-md-6">
+        <label for="city">Data Pagamento :</label>
+        <input
+          type="text"
+          id="day_pay"
+          maxlength="100"
+          formControlName="day_pay"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="city">Nota Fiscal :</label>
+        <input
+          type="text"
+          id="nfse"
+          maxlength="100"
+          formControlName="nfse"
+          class="form-control"
+        />
+      </div>
+    </div>
+    <div class="row no-margin">
+      <div class="form-group col-md-6">
+        <label for="day_pay">Data Inicial :</label>
+        <input
+          type="date"
+          class="form-control"
+          placeholder="DD/MM/AAAA"
+          maxlength="10"
+          name="initial_date"
+          formControlName="initial_date"
+          id="day_pay"
+        />
+        <div class="invalid-feedback">Requerido.</div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="day_pay">Data Final :</label>
+        <input
+          type="date"
+          class="form-control"
+          placeholder="DD/MM/AAAA"
+          maxlength="10"
+          name="final_date"
+          formControlName="final_date"
+          id="final_date"
+        />
+        <div class="invalid-feedback">Requerido.</div>
+      </div>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" >Salvar</button>
+      <button type="button" class="btn btn-primary" (click)="closeDialog()">Cancelar</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,301 @@
+<div class="page-heading">
+  <div class="page-content fade-in-up">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="ibox">
+          <div class="ibox-head">
+            <div class="ibox-title">Colaborador</div>
+          </div>
+          <div class="ibox-body">
+            <form class="needs-validation" [formGroup]="formMain">
+              <div class="row">
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">Código :</li>
+                  <input readonly type="text" formControlName="id" class="form-control" id="id" />
+                </div>
+                <div class="form-group col-md-6">
+                  <li class="breadcrumb">Nome :</li>
+                  <input type="text" id="name" maxlength="100" formControlName="name" class="form-control" [ngClass]="{
+                        'is-invalid': submitted && formMain.controls.name.invalid }" />
+                  <div class="invalid-feedback">
+                    Você precisa informar o nome (5 a 100 caracteres).
+                  </div>
+                </div>
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">Data nascimento :</li>
+                  <input type="date" id="date_birth" formControlName="date_birth" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">Genero :</li>
+                  <select formControlName="sex" class="form-control" id="sex"
+                    [ngClass]="{'is-invalid': submitted && formMain.controls.sex.invalid }">
+                    <option *ngFor="let sex of config.Sex" [ngValue]="sex.id" [selected]="sex.id === sex">
+                      {{sex.name}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">Cep :</li>
+                  <div class="input-group">
+                    <input type="text" formControlName="zip_code" class="form-control" id="zip_code" name="zip_code"
+                      mask="00.000-000" [ngClass]="{'is-invalid': submitted && formMain.controls.zip_code.invalid }">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button" (click)="getByZipCode()">Buscar</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <li class="breadcrumb">Endereço :</li>
+                  <input type="text" id="street" maxlength="100" formControlName="street" class="form-control"
+                    [ngClass]="{
+                      'is-invalid': submitted && formMain.controls.street.invalid }" />
+                  <div class="invalid-feedback">
+                    Você precisa informar o endereço (5 a 100 caracteres).
+                  </div>
+                </div>
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">Número :</li>
+                  <input type="text" id="number" maxlength="100" formControlName="number" class="form-control"
+                    [ngClass]="{
+                      'is-invalid': submitted && formMain.controls.number.invalid }" />
+                  <div class="invalid-feedback">
+                    Você precisa informar o número endereço.
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <li class="breadcrumb">Complemento :</li>
+                  <input type="text" id="complement" maxlength="100" formControlName="complement"
+                    class="form-control" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <li class="breadcrumb">Bairro :</li>
+                  <input type="text" id="neighborhood" maxlength="100" formControlName="neighborhood"
+                    class="form-control" [ngClass]="{
+                      'is-invalid': submitted && formMain.controls.neighborhood.invalid }" />
+                  <div class="invalid-feedback">
+                    Você precisa informar o bairro.
+                  </div>
+                </div>
+                <div class="form-group col-md-5">
+                  <li class="breadcrumb">Cidade :</li>
+                  <input type="text" id="city" maxlength="100" formControlName="city" class="form-control" [ngClass]="{
+                      'is-invalid': submitted && formMain.controls.city.invalid }" />
+                  <div class="invalid-feedback">
+                    Você precisa informar a cidade.
+                  </div>
+                </div>
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">UF :</li>
+                  <select formControlName="state" class="form-control" id="state"
+                    [ngClass]="{'is-invalid': submitted && formMain.controls.state.invalid }">
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espirito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Você precisa informar o estado.
+                  </div>
+                </div>
+                <div class="form-group col-md-1">
+                  <li class="breadcrumb">IBGE :</li>
+                  <input type="text" id="city_code" maxlength="100" formControlName="city_code" class="form-control" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">Telefone fixo :</li>
+                  <input type="text" id="telephone" mask="(00)00000-0000" formControlName="telephone"
+                    class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">Celular :</li>
+                  <input type="text" id="cell" mask="(00)00000-0000" formControlName="cell" class="form-control"
+                    [ngClass]="{'is-invalid': submitted && formMain.controls.cell.invalid }" />
+                  <div class="invalid-feedback">
+                    Você precisa informar o número do celular.
+                  </div>
+                </div>
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">Whatsapp :</li>
+                  <input type="text" id="whatsapp" mask="(00)00000-0000" formControlName="whatsapp"
+                    class="form-control" />
+                </div>
+                <div class="form-group col-md-6">
+                  <li class="breadcrumb">Email :</li>
+                  <input type="email" id="email" maxlength="250" formControlName="email" class="form-control"
+                    [ngClass]="{'is-invalid': submitted && formMain.controls.email.invalid }" />
+                  <div class="invalid-feedback">
+                    Você precisa informar o email.
+                  </div>
+                </div>
+              </div>
+              <p class="text-white bg-info text-center">Outras informações</p>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <li class="breadcrumb">Empresa :</li>
+                  <select id="company_id" formControlName="company_id" class="form-control">
+                    <option *ngFor="let company of companiesToSelect" [ngValue]="company.id"
+                      [selected]="company.id === company_id">
+                      {{company.name}}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <li class="breadcrumb">Setor :</li>
+                  <select id="sector_id" formControlName="sector_id" class="form-control">
+                    <option *ngFor="let sector of sectorsToSelect" [ngValue]="sector.id"
+                      [selected]="sector.id === sector_id">
+                      {{sector.description}}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <li class="breadcrumb">Cargo :</li>
+                  <select id="job_function_id" formControlName="job_function_id" class="form-control">
+                    <option *ngFor="let jobFunction of jobFunctionToSelect" [ngValue]="jobFunction.id"
+                      [selected]="jobFunction.id === job_function_id">
+                      {{jobFunction.name}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <li class="breadcrumb">Grau de instrução :</li>
+                  <select id="education_level_id" formControlName="education_level_id" class="form-control">
+                    <option *ngFor="let educationLevel of educationLevelToSelect" [ngValue]="educationLevel.id"
+                      [selected]="educationLevel.id === education_level_id">
+                      {{educationLevel.description}}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">Trabalhando ?</li>
+                  <select formControlName="is_active" class="form-control" id="is_active" name="is_active">
+                    <option *ngFor="let yesNoBoolean of config.yesNoBoolean" [ngValue]="yesNoBoolean.id"
+                      [selected]="yesNoBoolean.id === is_active">
+                      {{yesNoBoolean.name}}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">Carteira de trabalho :</li>
+                  <input type="text" id="ctps" maxlength="100" formControlName="ctps" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">Pis :</li>
+                  <input type="text" id="pis" maxlength="100" formControlName="pis" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">Data admissão :</li>
+                  <input type="date" id="date_admission" formControlName="date_admission" class="form-control" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">CNH :</li>
+                  <input type="text" id="cnh" maxlength="20" formControlName="cnh" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">Categoria :</li>
+                  <select formControlName="cnh_category" class="form-control" id="cnh_category" name="cnh_category">
+                    <option *ngFor="let categoryCNH of config.categoryCNH" [ngValue]="categoryCNH.id"
+                      [selected]="categoryCNH.id === cnh_category">
+                      {{categoryCNH.name}}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">Identidade :</li>
+                  <input type="text" id="identity" maxlength="20" formControlName="identity" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">Data emissão :</li>
+                  <input type="date" id="identity_date_emission" formControlName="identity_date_emission"
+                    class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">CPF :</li>
+                  <input type="text" id="cpf" maxlength="15" formControlName="cpf" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                  <li class="breadcrumb">Estado civíl :</li>
+                  <select formControlName="marital_status" class="form-control" id="marital_status"
+                    [ngClass]="{'is-invalid': submitted && formMain.controls.marital_status.invalid }">
+                    <option *ngFor="let maritalStatus of config.maritalStatus" [ngValue]="maritalStatus.id"
+                      [selected]="maritalStatus.id === marital_status">
+                      {{maritalStatus.name}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <li class="breadcrumb">Nome da mãe :</li>
+                  <input type="text" id="name_mother" maxlength="150" formControlName="name_mother"
+                    class="form-control" />
+                </div>
+                <div class="form-group col-md-4">
+                  <li class="breadcrumb">Nome do pai :</li>
+                  <input type="text" id="name_father" maxlength="150" formControlName="name_father"
+                    class="form-control" />
+                </div>
+                <div class="form-group col-md-4">
+                  <li class="breadcrumb">Nome da esposa/marido :</li>
+                  <input type="text" id="name_husband_wife" maxlength="150" formControlName="name_husband_wife"
+                    class="form-control" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <li class="breadcrumb">Filhos(as) :</li>
+                  <textarea class="form-control" id="name_children" formControlName="name_children" rows="3"></textarea>
+                </div>
+              </div>
+              <div class="text-right">
+                <button *ngIf="Inserting === false" type="button" class="btn btn-primary" (click)="onNew()">
+                  <i class="fa fa-plus fa-lg" aria-hidden="true"></i>&nbsp; Novo
+                </button>
+                {{ "" }}
+                <button type="button" class="btn btn-primary" (click)="onSubmit()">
+                  <i class="fa fa-save fa-lg" aria-hidden="true"></i>&nbsp; Gravar
+                </button>
+                {{ "" }}
+                <button type="button" class="btn btn-primary" (click)="onClose()">
+                  <i class="fa fa-close fa-lg" aria-hidden="true"></i>&nbsp; Fechar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

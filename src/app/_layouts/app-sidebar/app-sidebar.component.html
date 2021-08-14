@@ -1,0 +1,64 @@
+<div id="sidebar-collapse">
+  <div class="admin-block d-flex">
+    <div>
+      <img src="./assets/img/1.jpg" width="30px" />
+    </div>
+    <div class="admin-info">
+      <div class="font-strong">{{userLogged?.name}}</div><small>{{userLogged?.user_group_name}}</small>
+    </div>
+  </div>
+  <ul class="side-menu metismenu">
+    <li>
+      <a href="javascript:;"><i class="sidebar-item-icon fa fa-table"></i>
+        <span class="nav-label">Tabelas..</span><i class="fa fa-angle-left arrow"></i></a>
+      <ul class="nav-2-level collapse">
+        <li><a routerLink="/accounts" routerLinkActive="active">Cadastros</a></li>
+        <li><a routerLink="/job-functions" routerLinkActive="active">Cargos</a></li>
+        <li><a routerLink="/collaborators" routerLinkActive="active">Colaboradores</a></li>
+        <li><a routerLink="/companies" routerLinkActive="active">Empresas</a></li>
+        <li><a routerLink="/payment-methods" routerLinkActive="active">Formas de pagamento</a></li>
+        <li><a routerLink="/managements" routerLinkActive="active">Gerências</a></li>
+        <li><a routerLink="/education-levels" routerLinkActive="active">Grau de instrução</a></li>
+        <li><a routerLink="/managerial-natures" routerLinkActive="active">Natureza gerencial</a></li>
+        <li><a routerLink="/account-plans" routerLinkActive="active">Plano de contas</a></li>
+        <li><a routerLink="/services" routerLinkActive="active">Serviços</a></li>
+        <li><a routerLink="/sectors" routerLinkActive="active">Setores</a></li>
+        <li><a routerLink="/document-types" routerLinkActive="active">Tipo de documentos</a></li>
+      </ul>
+    </li>
+    <li>
+      <a routerLink="/">
+        <i class="sidebar-item-icon fa fa-tachometer"></i>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a routerLink="/expenses">
+        <i class="sidebar-item-icon fa fa-money"></i>
+        <span class="nav-label">Apropriações de custos</span>
+      </a>
+      <a routerLink="/flow">
+        <i class="sidebar-item-icon fa fa-calendar-o"></i>
+        <span class="nav-label">Fluxo de caixa</span>
+      </a>
+      <a routerLink="/payroll">
+        <i class="sidebar-item-icon fa fa-child"></i>
+        <span class="nav-label">Folha de pagamento</span>
+      </a>
+      <a routerLink="/measurement">
+        <i class="sidebar-item-icon fa fa-flask"></i>
+        <span class="nav-label">Medição de esforços</span>
+      </a>
+      <a routerLink="/invoices" routerLinkActive="active">
+        <i class="sidebar-item-icon fa fa-clone"></i>
+        <span class="nav-label">Notas fiscais</span>
+      </a>
+      <a routerLink="/revenues">
+        <i class="sidebar-item-icon fa fa-gift"></i>
+        <span class="nav-label">Receitas</span>
+      </a>
+      <a routerLink="/">
+        <i class="sidebar-item-icon fa fa-bar-chart"></i>
+        <span class="nav-label">Resultados</span>
+      </a>
+    </li>
+  </ul>
+</div>

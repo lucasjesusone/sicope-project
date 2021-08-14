@@ -1,0 +1,264 @@
+<div class="page-heading">
+  <div class="page-content fade-in-up">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="ibox">
+          <div class="ibox-head">
+            <div class="ibox-title">Nota fiscal</div>
+          </div>
+          <div class="ibox-body">
+            <form class="needs-validation" [formGroup]="formMain">
+              <div class="row">
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active">Código:</li>
+                    </ol>
+                  </nav>
+                  <input readonly type="text" formControlName="id" class="form-control" id="id" />
+                </div>
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active">Número NFSe:</li>
+                    </ol>
+                  </nav>
+                  <input readonly type="text" formControlName="invoice_number" class="form-control" id="invoice_number"
+                    name="invoice_number" />
+                </div>
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active">Data de emissão:</li>
+                    </ol>
+                  </nav>
+                  <div class="input-group">
+                    <input type="date" class="form-control" placeholder="DD/MM/AAAA" maxlength="10" name="date_emission"
+                      formControlName="date_emission" id="date_emission"
+                      [ngClass]="{'is-invalid': submitted && formMain.controls.date_emission.invalid }">
+                    <div class="invalid-feedback">
+                      Requerido.
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active">Prestador de serviços:</li>
+                    </ol>
+                  </nav>
+                  <select id="provider_id" formControlName="provider_id" class="form-control"
+                    [ngClass]="{'is-invalid': submitted && formMain.controls.provider_id.invalid }">
+                    <option *ngFor="let company of companiesToSelect" [ngValue]="company.id"
+                      [selected]="company.id === provider_id">
+                      {{company.name}}
+                    </option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Voce precisa informar o prestador de serviços.
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active">Tomador de serviços:</li>
+                    </ol>
+                  </nav>
+                  <select id="taker_id" formControlName="taker_id" class="form-control"
+                    [ngClass]="{'is-invalid': submitted && formMain.controls.taker_id.invalid }">
+                    <option *ngFor=" let account of accountsToSelect" [ngValue]="account.id"
+                      [selected]="account.id === taker_id">
+                      {{account.name}}
+                    </option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Voce precisa informar o tomador de serviços.
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">Descrição dos serviços:</li>
+                    </ol>
+                  </nav>
+                  <textarea class="form-control" formControlName="discrimination" id="discrimination"
+                    name="discrimination" rows="3"
+                    [ngClass]="{'is-invalid': submitted && formMain.controls.taker_id.invalid }"></textarea>
+                  <div class="invalid-feedback">
+                    Voce precisa informar descrição dos serviços.
+                  </div>
+                </div>
+              </div>
+              <span class="d-block p-2 bg-secondary text-white">Retençoes federais</span>
+              <div class="row">
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">PIS (R$):</li>
+                    </ol>
+                  </nav>
+                  <input type="text" currencyMask formControlName="value_pis" class="form-control" id="value_pis" />
+                </div>
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">COFINS (R$):</li>
+                    </ol>
+                  </nav>
+                  <input type="text" currencyMask formControlName="value_cofins" class="form-control"
+                    id="value_cofins" />
+                </div>
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">INSS (R$):</li>
+                    </ol>
+                  </nav>
+                  <input type="text" currencyMask formControlName="value_inss" class="form-control" id="value_inss" />
+                </div>
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">IR (R$):</li>
+                    </ol>
+                  </nav>
+                  <input type="text" currencyMask formControlName="value_ir" class="form-control" id="value_ir" />
+                </div>
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">CSLL (R$):</li>
+                    </ol>
+                  </nav>
+                  <input type="text" currencyMask formControlName="value_csll" class="form-control" id="value_csll" />
+                </div>
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">Outras retenções (R$):</li>
+                    </ol>
+                  </nav>
+                  <input type="text" currencyMask formControlName="other_reviews" class="form-control"
+                    id="other_reviews" />
+                </div>
+              </div>
+              <span class="d-block p-2 bg-secondary text-white">Valores</span>
+              <div class="row">
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">Valor dos serviços (R$):</li>
+                    </ol>
+                  </nav>
+                  <input type="text" currencyMask formControlName="value_services" class="form-control"
+                    id="value_services" />
+                </div>
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">Deduções (R$):</li>
+                    </ol>
+                  </nav>
+                  <input type="text" currencyMask formControlName="value_deductions" class="form-control"
+                    id="value_deductions" />
+                </div>
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">Desconto incondicionado (R$):</li>
+                    </ol>
+                  </nav>
+                  <input type="text" currencyMask formControlName="unconditioned_discount" class="form-control"
+                    id="unconditioned_discount" />
+                </div>
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">Base de cálculo (R$):</li>
+                    </ol>
+                  </nav>
+                  <input type="text" currencyMask formControlName="calculation_base" class="form-control"
+                    id="calculation_base" />
+                </div>
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">Aliquota (%):</li>
+                    </ol>
+                  </nav>
+                  <input type="text" currencyMask formControlName="aliquot" class="form-control" id="aliquot" />
+                </div>
+                <div class="form-group col-md-1"></div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">ISS (R$):</li>
+                    </ol>
+                  </nav>
+                  <input type="text" currencyMask formControlName="value_iss" class="form-control" id="value_iss" />
+                </div>
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">ISS Retido (R$):</li>
+                    </ol>
+                  </nav>
+                  <input type="text" currencyMask formControlName="value_iss_withheld" class="form-control"
+                    id="value_iss_withheld" />
+                </div>
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">Desconto condicionado (R$):</li>
+                    </ol>
+                  </nav>
+                  <input type="text" currencyMask formControlName="conditioned_discount" class="form-control"
+                    id="conditioned_discount" />
+                </div>
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">Valor liquido (R$):</li>
+                    </ol>
+                  </nav>
+                  <input type="text" currencyMask formControlName="value_liquid" class="form-control"
+                    id="value_liquid" />
+                </div>
+                <div class="form-group col-md-2">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">Valor total da nota (R$):</li>
+                    </ol>
+                  </nav>
+                  <input type="text" currencyMask formControlName="value_total" class="form-control" id="value_total" />
+                </div>
+                <div class="form-group col-md-1"></div>
+              </div>
+
+              <div class="text-right">
+                <button *ngIf="Inserting === false" type="button" class="btn btn-primary" (click)="onNew()">
+                  <i class="fa fa-plus fa-lg" aria-hidden="true"></i>&nbsp; Novo
+                </button>
+                {{ "" }}
+                <button type="button" class="btn btn-primary" (click)="onSubmit()">
+                  <i class="fa fa-save fa-lg" aria-hidden="true"></i>&nbsp; Gravar
+                </button>
+                {{ "" }}
+                <button type="button" class="btn btn-primary" (click)="onClose()">
+                  <i class="fa fa-close fa-lg" aria-hidden="true"></i>&nbsp; Fechar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

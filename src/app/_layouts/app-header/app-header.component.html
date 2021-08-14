@@ -1,0 +1,35 @@
+<div class="page-brand">
+  <a class="link" routerLink="/index">
+    <span class="brand">SICOPE</span>
+    <span class="brand-mini">S</span>
+  </a>
+</div>
+<div class="flexbox flex-1">
+  <ul class="nav navbar-toolbar">
+    <li>
+      <a class="nav-link sidebar-toggler js-sidebar-toggler"><i class="ti-menu"></i></a>
+    </li>
+  </ul>
+  <ul class="nav navbar-toolbar">
+    <li class="dropdown dropdown-notification">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-bell-o rel">
+          <span class="notify-signal"></span>
+        </i>
+      </a>
+    </li>
+    <li class="dropdown dropdown-user">
+      <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
+        <img src="./assets/img/1.jpg" />
+        <span></span>Administrador<i class="fa fa-angle-down m-l-5"></i></a>
+      <ul class="dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item" href="/users"><i class="fa fa-user"></i>Usuários</a>
+        <a class="dropdown-item" href="/user-groups"><i class="fa fa-users"></i>Grupo de usuários</a>
+        <li class="dropdown-divider"></li>
+        <a class="dropdown-item" href="/configs"><i class="fa fa-cog"></i>Configurações</a>
+        <li class="dropdown-divider"></li>
+        <a class="dropdown-item" (click)="logout()"><i class="fa fa-power-off"></i>Sair</a>
+      </ul>
+    </li>
+  </ul>
+</div>

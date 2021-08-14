@@ -1,0 +1,480 @@
+<div class="page-heading">
+  <div class="page-content fade-in-up">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="ibox">
+          <div class="ibox-head">
+            <div class="ibox-title">Cadastro</div>
+          </div>
+          <div class="ibox-body">
+            <ul class="nav nav-tabs tabs-line">
+              <li class="nav-item">
+                <a class="nav-link active" href="#tabDatas" data-toggle="tab">
+                  Dados</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#tabServices" data-toggle="tab">
+                  Serviços contratados</a
+                >
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="tabDatas">
+                <form class="needs-validation" [formGroup]="formMain">
+                  <div class="row">
+                    <div class="form-group col-md-1">
+                      <label for="id">Código :</label>
+                      <input
+                        readonly
+                        type="text"
+                        formControlName="id"
+                        class="form-control"
+                        id="id"
+                      />
+                    </div>
+                    <div class="form-group col-md-2">
+                      <label for="account_type">Tipo :</label>
+                      <select
+                        formControlName="account_type"
+                        class="form-control"
+                        id="account_type"
+                        [ngClass]="{
+                          'is-invalid':
+                            submitted && formMain.controls.account_type.invalid
+                        }"
+                      >
+                        <option
+                          *ngFor="let accountType of config.accountType"
+                          [ngValue]="accountType.id"
+                          [selected]="accountType.id === account_type"
+                        >
+                          {{ accountType.name }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-5">
+                      <label for="name">Nome :</label>
+                      <input
+                        type="text"
+                        id="name"
+                        maxlength="100"
+                        formControlName="name"
+                        class="form-control"
+                        [ngClass]="{
+                          'is-invalid':
+                            submitted && formMain.controls.name.invalid
+                        }"
+                      />
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="fantasy_name">Nome fantasia:</label>
+                      <input
+                        type="text"
+                        id="fantasy_name"
+                        maxlength="100"
+                        formControlName="fantasy_name"
+                        class="form-control"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-3">
+                      <label for="document">Documento (CPF/CNPJ) :</label>
+                      <div class="input-group mb-3">
+                        <input
+                          type="text"
+                          formControlName="document"
+                          class="form-control"
+                          id="document"
+                          name="document"
+                          mask="000.000.000-00 || 00.000.000/0000-00"
+                          [ngClass]="{
+                            'is-invalid':
+                              submitted && formMain.controls.document.invalid
+                          }"
+                        />
+                        <div class="input-group-append">
+                          <button
+                            class="btn btn-primary"
+                            type="button"
+                            (click)="getByDocument()"
+                          >
+                            Buscar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label for="state_registration"
+                        >Inscrição Estadual :</label
+                      >
+                      <input
+                        type="text"
+                        id="state_registration"
+                        maxlength="100"
+                        formControlName="state_registration"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label for="municipal_registration"
+                        >Inscrição Municipal :</label
+                      >
+                      <input
+                        type="text"
+                        id="municipal_registration"
+                        maxlength="100"
+                        formControlName="municipal_registration"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label for="zip_code">Cep :</label>
+                      <div class="input-group mb-3">
+                        <input
+                          type="text"
+                          formControlName="zip_code"
+                          class="form-control"
+                          id="zip_code"
+                          name="zip_code"
+                          mask="00.000-000"
+                          [ngClass]="{
+                            'is-invalid':
+                              submitted && formMain.controls.zip_code.invalid
+                          }"
+                        />
+                        <div class="input-group-append">
+                          <button
+                            class="btn btn-primary"
+                            type="button"
+                            (click)="getByZipCode()"
+                          >
+                            Buscar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label for="street">Endereço :</label>
+                      <input
+                        type="text"
+                        id="street"
+                        maxlength="100"
+                        formControlName="street"
+                        class="form-control"
+                        [ngClass]="{
+                          'is-invalid':
+                            submitted && formMain.controls.street.invalid
+                        }"
+                      />
+                    </div>
+                    <div class="form-group col-md-2">
+                      <label for="number">Número :</label>
+                      <input
+                        type="text"
+                        id="number"
+                        maxlength="100"
+                        formControlName="number"
+                        class="form-control"
+                        [ngClass]="{
+                          'is-invalid':
+                            submitted && formMain.controls.number.invalid
+                        }"
+                      />
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="complement">Complemento :</label>
+                      <input
+                        type="text"
+                        id="complement"
+                        maxlength="100"
+                        formControlName="complement"
+                        class="form-control"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-4">
+                      <label for="neighborhood">Bairro :</label>
+                      <input
+                        type="text"
+                        id="neighborhood"
+                        maxlength="100"
+                        formControlName="neighborhood"
+                        class="form-control"
+                        [ngClass]="{
+                          'is-invalid':
+                            submitted && formMain.controls.neighborhood.invalid
+                        }"
+                      />
+                    </div>
+                    <div class="form-group col-md-5">
+                      <label for="city">Cidade :</label>
+                      <input
+                        type="text"
+                        id="city"
+                        maxlength="100"
+                        formControlName="city"
+                        class="form-control"
+                        [ngClass]="{
+                          'is-invalid':
+                            submitted && formMain.controls.city.invalid
+                        }"
+                      />
+                    </div>
+                    <div class="form-group col-md-2">
+                      <label for="state">UF :</label>
+                      <select
+                        formControlName="state"
+                        class="form-control"
+                        id="state"
+                        [ngClass]="{
+                          'is-invalid':
+                            submitted && formMain.controls.state.invalid
+                        }"
+                      >
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espirito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-1">
+                      <label for="city_code">IBGE :</label>
+                      <input
+                        type="text"
+                        id="city_code"
+                        maxlength="100"
+                        formControlName="city_code"
+                        class="form-control"
+                        [ngClass]="{
+                          'is-invalid':
+                            submitted && formMain.controls.city_code.invalid
+                        }"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-2">
+                      <label for="telephone">Telefone fixo :</label>
+                      <input
+                        type="text"
+                        id="telephone"
+                        mask="(00)00000-0000"
+                        formControlName="telephone"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="form-group col-md-2">
+                      <label for="cell">Celular :</label>
+                      <input
+                        type="text"
+                        id="cell"
+                        mask="(00)00000-0000"
+                        formControlName="cell"
+                        class="form-control"
+                        [ngClass]="{
+                          'is-invalid':
+                            submitted && formMain.controls.cell.invalid
+                        }"
+                      />
+                    </div>
+                    <div class="form-group col-md-2">
+                      <label for="whatsapp">Whatsapp :</label>
+                      <input
+                        type="text"
+                        id="whatsapp"
+                        mask="(00)00000-0000"
+                        formControlName="whatsapp"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="email">Email :</label>
+                      <input
+                        type="email"
+                        id="email"
+                        maxlength="250"
+                        formControlName="email"
+                        class="form-control"
+                        [ngClass]="{
+                          'is-invalid':
+                            submitted && formMain.controls.email.invalid
+                        }"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-3">
+                      <label for="bank">Banco :</label>
+                      <input
+                        type="text"
+                        id="bank"
+                        maxlength="100"
+                        formControlName="bank"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label for="bank_agency">Agência :</label>
+                      <input
+                        type="text"
+                        id="bank_agency"
+                        maxlength="100"
+                        formControlName="bank_agency"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label for="bank_account_type">Tipo da conta :</label>
+                      <select
+                        formControlName="bank_account_type"
+                        class="form-control"
+                        id="bank_account_type"
+                      >
+                        <option
+                          *ngFor="let bankAccountType of config.bankAccountType"
+                          [ngValue]="bankAccountType.id"
+                          [selected]="bankAccountType.id === bank_account_type"
+                        >
+                          {{ bankAccountType.name }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label for="bank_account">Número da conta :</label>
+                      <input
+                        type="text"
+                        id="bank_account"
+                        maxlength="100"
+                        formControlName="bank_account"
+                        class="form-control"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-10">
+                      <label for="comments">Observações :</label>
+                      <input
+                        type="text"
+                        id="comments"
+                        maxlength="100"
+                        formControlName="comments"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="form-group col-md-2">
+                      <label for="status">Situação :</label>
+                      <select
+                        formControlName="status"
+                        class="form-control"
+                        id="status"
+                      >
+                        <option
+                          *ngFor="let accountStatus of config.accountStatus"
+                          [ngValue]="accountStatus.id"
+                          [selected]="accountStatus.id === status"
+                        >
+                          {{ accountStatus.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="text-right">
+                    <button
+                      *ngIf="Inserting === false"
+                      type="button"
+                      class="btn btn-primary"
+                      (click)="onNew()"
+                    >
+                      <i class="fa fa-plus fa-lg" aria-hidden="true"></i>&nbsp;
+                      Novo
+                    </button>
+                    {{ "" }}
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      (click)="onSubmit()"
+                    >
+                      <i class="fa fa-save fa-lg" aria-hidden="true"></i>&nbsp;
+                      Gravar
+                    </button>
+                    {{ "" }}
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      (click)="onClose()"
+                    >
+                      <i class="fa fa-close fa-lg" aria-hidden="true"></i>&nbsp;
+                      Fechar
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="tab-pane" id="tabServices">
+                <div class="table-responsive">
+                  <button type="button" class="btn btn-primary" (click)="openDialog()">Novo Serviço</button>
+                  <table class="table table-sm table-hover table-bordered">
+                    <caption>{{ totalRecords}} registro(s) encontrado(s).</caption>
+                    <thead class="btn-default">
+                      <tr>
+                        <th scope="col" style="width: 10px">Código</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Dia de Pagmento</th>
+                        <th scope="col">Nota Fiscal</th>
+                        <th scope="col">Data Inicial </th>
+                        <th scope="col">Data Final</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let account of accounts">
+                        <!-- Dados -->
+                        <td style="width:20px;" scope="row">{{ account.id }}</td>
+                        <td>{{ account.service.name }}</td>
+                        <td>{{ account.value}}</td>
+                        <td>{{ account.pay_day}}</td>
+                        <td>{{ account.nfse }}</td>
+                        <td>{{ account.date_initial | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{ account.date_final  | date: 'dd/MM/yyyy'}}</td>
+                        <!-- <td>{{ account.cell}}</td> -->
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

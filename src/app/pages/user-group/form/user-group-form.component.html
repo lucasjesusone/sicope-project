@@ -1,0 +1,43 @@
+<div class="page-heading">
+  <div class="page-content fade-in-up">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="ibox">
+          <div class="ibox-head">
+            <div class="ibox-title">Usuário</div>
+          </div>
+          <div class="ibox-body">
+            <form class="needs-validation" [formGroup]="formMain">
+              <div class="row">
+                <div class="form-group col-md-2">
+                  <label for="id">Código :</label>
+                  <input disabled type="text" formControlName="id" class="form-control" id="id" />
+                </div>
+                <div class="form-group col-md-10">
+                  <label for="name">Nome :</label>
+                  <input type="text" id="name" maxlength="100" formControlName="name" class="form-control" [ngClass]="{
+                      'is-invalid': submitted && formMain.controls.name.invalid }" />
+                  <div class="invalid-feedback">
+                    Você precisa informar a descrição (5 a 100 caracteres).
+                  </div>
+                </div>
+              </div>
+              <div class="text-right">
+                <button *ngIf="Inserting === false" type="button" class="btn btn-default" (click)="onNew()">
+                  <i class="fa fa-plus fa-lg" aria-hidden="true"></i>&nbsp; Novo
+                </button>
+                {{ "" }}
+                <button type="button" class="btn btn-default" (click)="onSubmit()">
+                  <i class="fa fa-save fa-lg" aria-hidden="true"></i>&nbsp; Gravar
+                </button>
+                {{ "" }}
+                <button type="button" class="btn btn-default" (click)="onClose()">
+                  <i class="fa fa-close fa-lg" aria-hidden="true"></i>&nbsp; Fechar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
